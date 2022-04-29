@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading;
+//using System.Threading;
 
 public class Particle : MonoBehaviour
 {
@@ -16,12 +16,12 @@ public class PotEvent : MonoBehaviour
     public GameObject Potion_G;
     public GameObject Potion_Y;
 
-    public GameObject Cube;
-    public GameObject Capsule1;
-    public GameObject Cylinder;
-    public GameObject Sphere;
-    public GameObject Capsule2;
-    public GameObject Cube2;
+    public GameObject Dragon_G;
+    public GameObject Dragon_B;
+    public GameObject Dragon_R;
+    public GameObject Corgi_1;
+    public GameObject Dragon_Y;
+    public GameObject Corgi_2;
 
     public ParticleSystem Pongdang; //파티클시스템
     public ParticleSystem Bubble; //파티클시스템
@@ -33,12 +33,12 @@ public class PotEvent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cube.SetActive(false);
-        Capsule1.SetActive(false);
-        Cylinder.SetActive(false);
-        Sphere.SetActive(false);
-        Capsule2.SetActive(false);
-        Cube2.SetActive(false);
+        Dragon_G.SetActive(false);
+        Dragon_B.SetActive(false);
+        Dragon_R.SetActive(false);
+        Corgi_1.SetActive(false);
+        Dragon_Y.SetActive(false);
+        Corgi_2.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider coll)
@@ -82,7 +82,9 @@ public class PotEvent : MonoBehaviour
         if (cnt == 2)
         {
             //Debug.Log("tagList : " + tagList[0] + ", " + tagList[1]);
-            Invoke("DragonAppear", 2f);
+            Potion_B.SetActive(false); Potion_R.SetActive(false);
+            Potion_G.SetActive(false); Potion_Y.SetActive(false);
+            Invoke("DragonAppear", 1.5f);
         }
     }
 
@@ -93,11 +95,13 @@ public class PotEvent : MonoBehaviour
 
         if (tagList.Contains("Red") && tagList.Contains("Blue"))
         {
-            StartCoroutine(cubeActive());
+            Dragon_R.SetActive(true);
+            Debug.Log("Dragon_R appear");
         }
         if (tagList.Contains("Red") && tagList.Contains("Green"))
         {
-            StartCoroutine(capsule1Active());
+            Dragon_B.SetActive(true);
+            Debug.Log("Dragon_B appear");
         }
         if (tagList.Contains("Red") && tagList.Contains("Yellow"))
         {
@@ -105,7 +109,8 @@ public class PotEvent : MonoBehaviour
         }
         if (tagList.Contains("Blue") && tagList.Contains("Green"))
         {
-            StartCoroutine(SphereActive());
+            Dragon_G.SetActive(true);
+            Debug.Log("Dragon_G appear");
         }
         if (tagList.Contains("Blue") && tagList.Contains("Yellow"))
         {
@@ -113,38 +118,39 @@ public class PotEvent : MonoBehaviour
         }
         if (tagList.Contains("Yellow") && tagList.Contains("Green"))
         {
-            StartCoroutine(Cube2Active());
+            Dragon_Y.SetActive(true);
+            Debug.Log("Dragon_Y appear");
         }
     }
 
-    IEnumerator cubeActive()
+    /*IEnumerator GDappear()
     {
-        yield return new WaitForSeconds(1.0f);
-        Cube.SetActive(true);
-    }
+        yield return new WaitForSeconds(0.6f);
+        Dragon_G.SetActive(true);
+    }*/
     IEnumerator capsule1Active()
     {
         yield return new WaitForSeconds(1.0f);
-        Capsule1.SetActive(true);
+        Dragon_B.SetActive(true);
     }
     IEnumerator CylinderActive()
     {
         yield return new WaitForSeconds(1.0f);
-        Cylinder.SetActive(true);
+        Dragon_R.SetActive(true);
     }
     IEnumerator SphereActive()
     {
         yield return new WaitForSeconds(1.0f);
-        Sphere.SetActive(true);
+        Corgi_1.SetActive(true);
     }
     IEnumerator Capsule2Active()
     {
         yield return new WaitForSeconds(1.0f);
-        Capsule2.SetActive(true);
+        Dragon_Y.SetActive(true);
     }
     IEnumerator Cube2Active()
     {
         yield return new WaitForSeconds(1.0f);
-        Cube2.SetActive(true);
+        Corgi_2.SetActive(true);
     }
 }
