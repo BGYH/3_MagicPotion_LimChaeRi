@@ -27,8 +27,10 @@ public class PotEvent : MonoBehaviour
     public ParticleSystem Bubble; //파티클시스템
 
     private Collider coll;
-    private List<string> tagList = new List<string>();
+    public List<string> tagList = new List<string>();
     private int cnt = 0;
+
+    public GameObject chatController;
 
     // Start is called before the first frame update
     void Start()
@@ -105,7 +107,8 @@ public class PotEvent : MonoBehaviour
         }
         if (tagList.Contains("Red") && tagList.Contains("Yellow"))
         {
-            StartCoroutine(CylinderActive());
+            Corgi_1.SetActive(true);
+            Debug.Log("Corgi1 appear");
         }
         if (tagList.Contains("Blue") && tagList.Contains("Green"))
         {
@@ -114,43 +117,15 @@ public class PotEvent : MonoBehaviour
         }
         if (tagList.Contains("Blue") && tagList.Contains("Yellow"))
         {
-            StartCoroutine(Capsule2Active());
+            Corgi_2.SetActive(true);
+            Debug.Log("Corgi2 appear");
         }
         if (tagList.Contains("Yellow") && tagList.Contains("Green"))
         {
             Dragon_Y.SetActive(true);
             Debug.Log("Dragon_Y appear");
         }
-    }
 
-    /*IEnumerator GDappear()
-    {
-        yield return new WaitForSeconds(0.6f);
-        Dragon_G.SetActive(true);
-    }*/
-    IEnumerator capsule1Active()
-    {
-        yield return new WaitForSeconds(1.0f);
-        Dragon_B.SetActive(true);
-    }
-    IEnumerator CylinderActive()
-    {
-        yield return new WaitForSeconds(1.0f);
-        Dragon_R.SetActive(true);
-    }
-    IEnumerator SphereActive()
-    {
-        yield return new WaitForSeconds(1.0f);
-        Corgi_1.SetActive(true);
-    }
-    IEnumerator Capsule2Active()
-    {
-        yield return new WaitForSeconds(1.0f);
-        Dragon_Y.SetActive(true);
-    }
-    IEnumerator Cube2Active()
-    {
-        yield return new WaitForSeconds(1.0f);
-        Corgi_2.SetActive(true);
+        chatController.GetComponent<chatController>().whichDragon();
     }
 }
