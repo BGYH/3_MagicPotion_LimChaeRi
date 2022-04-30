@@ -28,6 +28,17 @@ public class PotEvent : MonoBehaviour
 
     private Collider coll;
     public List<string> tagList = new List<string>();
+    //public List<string, string> tagNname = new List<string, string>();
+    //public string[,] tagNname = new string[4, 2];
+    public Dictionary<string, string> tagNname = new Dictionary<string, string>()
+    {
+        {"Red", "Èû"},
+        {"Blue", "¿ë±â"},
+        {"Green", "Çà¿î"},
+        {"Yellow", "ÁöÇý"}
+
+    };
+
     private int cnt = 0;
 
     public GameObject chatController;
@@ -126,6 +137,6 @@ public class PotEvent : MonoBehaviour
             Debug.Log("Dragon_Y appear");
         }
 
-        chatController.GetComponent<chatController>().whichDragon();
+        StartCoroutine(chatController.GetComponent<chatController>().whichDragon());
     }
 }

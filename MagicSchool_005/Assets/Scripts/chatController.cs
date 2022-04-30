@@ -4,52 +4,92 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.SceneManagement;
 
 public class chatController : MonoBehaviour
 {
     public XRController controller = null;
     public GameObject potEvent;
+    public GameObject Dragon_G;
+    public GameObject Dragon_B;
+    public GameObject Dragon_R;
+    public GameObject Corgi_1;
+    public GameObject Dragon_Y;
+    public GameObject Corgi_2;
 
     public Text ChatText;
     public string writerText = "";
+
+    public GameObject FadeScreen;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(TextPractice());
-
     }
 
-    public void whichDragon()
+    public IEnumerator whichDragon()
     {
-        //potEvent = GameObject.Find("Vis").GetComponent<PotEvent>();
         List<string> DragonTags = potEvent.GetComponent<PotEvent>().tagList;
         Debug.Log("***********    DragonTags : " + DragonTags[0] + ", " + DragonTags[1] + "    *******************");
+        
+        Dictionary<string, string> dic = potEvent.GetComponent<PotEvent>().tagNname;
+        dic.TryGetValue("Red", out string R_name);
+        dic.TryGetValue("Blue", out string B_name);
+        dic.TryGetValue("Green", out string G_name);
+        dic.TryGetValue("Yellow", out string Y_name);
 
         if (DragonTags.Contains("Red") && DragonTags.Contains("Blue"))
         {
-            StartCoroutine(RBtext());
+            yield return new WaitForSeconds(7.0f * Time.deltaTime);
+            yield return StartCoroutine(NormalChat(R_name + "과 " + B_name + "의 드래곤을 탄생시켰구나."));
+            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("   "));
+            Dragon_R.GetComponent<dragonHappy>().happyStart();
         }
         else if (DragonTags.Contains("Red") && DragonTags.Contains("Green"))
         {
-            StartCoroutine(RGtext());
+            yield return new WaitForSeconds(7.0f * Time.deltaTime);
+            yield return StartCoroutine(NormalChat(R_name + "과 " + G_name + "의 드래곤을 탄생시켰구나."));
+            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("   "));
+            Dragon_B.GetComponent<dragonHappy>().happyStart();
         }
         else if (DragonTags.Contains("Red") && DragonTags.Contains("Yellow"))
         {
-            StartCoroutine(RYtext());
+            yield return new WaitForSeconds(7.0f * Time.deltaTime);
+            yield return StartCoroutine(NormalChat(R_name + "과 " + Y_name + "의 드래곤을 탄생시켰구나."));
+            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("   "));
+            Corgi_1.GetComponent<dragonHappy>().happyStart();
         }
         else if (DragonTags.Contains("Blue") && DragonTags.Contains("Green"))
         {
-            StartCoroutine(BGtext());
+            yield return new WaitForSeconds(7.0f * Time.deltaTime);
+            yield return StartCoroutine(NormalChat(B_name + "와 " + G_name + "의 드래곤을 탄생시켰구나."));
+            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("   "));
+            Dragon_G.GetComponent<dragonHappy>().happyStart();
         }
         else if (DragonTags.Contains("Blue") && DragonTags.Contains("Yellow"))
         {
-            StartCoroutine(BYtext());
+            yield return new WaitForSeconds(7.0f * Time.deltaTime);
+            yield return StartCoroutine(NormalChat(B_name + "와 " + Y_name + "의 드래곤을 탄생시켰구나."));
+            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("   "));
+            Corgi_2.GetComponent<dragonHappy>().happyStart();
         }
         else if (DragonTags.Contains("Yellow") && DragonTags.Contains("Green"))
         {
-            StartCoroutine(GYtext());
+            yield return new WaitForSeconds(7.0f * Time.deltaTime);
+            yield return StartCoroutine(NormalChat(Y_name + "와 " + G_name + "의 드래곤을 탄생시켰구나."));
+            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("   "));
+            Dragon_Y.GetComponent<dragonHappy>().happyStart();
         }
+
+        Invoke("SceneChange", 4.5f);
+        StartCoroutine(FadeScreen.GetComponent<FadedScreen>().FadeOut());
     }
 
     IEnumerator NormalChat(string narration)
@@ -88,51 +128,8 @@ public class chatController : MonoBehaviour
         yield return StartCoroutine(NormalChat("   "));
     }
 
-    IEnumerator RBtext()
+    void SceneChange()
     {
-        yield return new WaitForSeconds(5.0f * Time.deltaTime);
-        yield return StartCoroutine(NormalChat("용기와 힘의 드래곤을 탄생시켰구나."));
-        yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
-        yield return StartCoroutine(NormalChat("   "));
-    }
-
-    IEnumerator RGtext()
-    {
-        yield return new WaitForSeconds(5.0f * Time.deltaTime);
-        yield return StartCoroutine(NormalChat("힘과 행운의 드래곤을 탄생시켰구나."));
-        yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
-        yield return StartCoroutine(NormalChat("   "));
-    }
-
-    IEnumerator RYtext()
-    {
-        yield return new WaitForSeconds(5.0f * Time.deltaTime);
-        yield return StartCoroutine(NormalChat("힘과 지혜의 드래곤을 탄생시켰구나."));
-        yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
-        yield return StartCoroutine(NormalChat("   "));
-    }
-
-    IEnumerator BGtext()
-    {
-        yield return new WaitForSeconds(5.0f * Time.deltaTime);
-        yield return StartCoroutine(NormalChat("행운과 용기의 드래곤을 탄생시켰구나."));
-        yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
-        yield return StartCoroutine(NormalChat("   "));
-    }
-
-    IEnumerator BYtext()
-    {
-        yield return new WaitForSeconds(5.0f * Time.deltaTime);
-        yield return StartCoroutine(NormalChat("용기와 지혜의 드래곤을 탄생시켰구나."));
-        yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
-        yield return StartCoroutine(NormalChat("   "));
-    }
-
-    IEnumerator GYtext()
-    {
-        yield return new WaitForSeconds(5.0f * Time.deltaTime);
-        yield return StartCoroutine(NormalChat("지혜와 행운의 드래곤을 탄생시켰구나."));
-        yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
-        yield return StartCoroutine(NormalChat("   "));
+        SceneManager.LoadScene("testScene");
     }
 }

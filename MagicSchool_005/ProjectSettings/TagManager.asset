@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Item
+  - Animal
+  - Door
+  - Blue
+  - Red
+  - Green
+  - Yellow
   layers:
   - Default
   - TransparentFX
