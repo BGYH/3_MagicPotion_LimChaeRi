@@ -24,7 +24,7 @@ public class FadedScreen : MonoBehaviour
 
     public IEnumerator FadeOut()
     {
-        yield return new WaitForSeconds(7.0f * Time.deltaTime);
+        yield return new WaitForSeconds(3.0f);
         Fade(0, 1);
     }
 

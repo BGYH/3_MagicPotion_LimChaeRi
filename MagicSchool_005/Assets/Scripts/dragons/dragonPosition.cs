@@ -7,6 +7,7 @@ public class dragonPosition : MonoBehaviour
     public Transform startPot;
     public Transform endPot;
     public float speed = 1.0f;
+    public AudioSource wings;
 
     float startTime;
     float totalDistance;
@@ -14,12 +15,12 @@ public class dragonPosition : MonoBehaviour
     // Start is called before the first frame update
     public IEnumerator Start()
     {
-        //this.gameObject.SetActive(true);
         startTime = Time.deltaTime;
         totalDistance = Vector3.Distance(startPot.position, endPot.position);
 
         yield return RepeatLerp(startPot.position, endPot.position, 3.0f);
         Debug.Log("dragonPosition Start");
+        wings.Play();
     }
 
     // Update is called once per frame

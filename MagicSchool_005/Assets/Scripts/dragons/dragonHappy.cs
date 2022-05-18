@@ -5,6 +5,8 @@ using UnityEngine;
 public class dragonHappy : MonoBehaviour
 {
     public Animator D_animator;
+    public AudioSource wings;
+    public AudioSource happySound;
     private bool D_Happy = false;
 
     // Start is called before the first frame update
@@ -22,7 +24,9 @@ public class dragonHappy : MonoBehaviour
 
     public void happyStart()
     {
+        wings.Stop();
         Debug.Log("-----------------  dragon Happy Start  -----------------------");
         D_animator.SetBool("Happy", true);
+        happySound.Play();
     }
 }

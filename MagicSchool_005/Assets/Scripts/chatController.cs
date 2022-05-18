@@ -18,6 +18,7 @@ public class chatController : MonoBehaviour
     public GameObject Corgi_2;
 
     public Text ChatText;
+    public GameObject Abtn;
     public string writerText = "";
 
     public GameObject FadeScreen;
@@ -41,55 +42,68 @@ public class chatController : MonoBehaviour
 
         if (DragonTags.Contains("Red") && DragonTags.Contains("Blue"))
         {
+            Abtn.SetActive(true);
             yield return new WaitForSeconds(7.0f * Time.deltaTime);
             yield return StartCoroutine(NormalChat(R_name + "과 " + B_name + "의 드래곤을 탄생시켰구나."));
             yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
             yield return StartCoroutine(NormalChat("   "));
             Dragon_R.GetComponent<dragonHappy>().happyStart();
+            Abtn.SetActive(false);
         }
         else if (DragonTags.Contains("Red") && DragonTags.Contains("Green"))
         {
+            Abtn.SetActive(true);
             yield return new WaitForSeconds(7.0f * Time.deltaTime);
             yield return StartCoroutine(NormalChat(R_name + "과 " + G_name + "의 드래곤을 탄생시켰구나."));
-            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("네 친구 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
             yield return StartCoroutine(NormalChat("   "));
             Dragon_B.GetComponent<dragonHappy>().happyStart();
+            Abtn.SetActive(false);
         }
         else if (DragonTags.Contains("Red") && DragonTags.Contains("Yellow"))
         {
+            Abtn.SetActive(true);
             yield return new WaitForSeconds(7.0f * Time.deltaTime);
             yield return StartCoroutine(NormalChat(R_name + "과 " + Y_name + "의 드래곤을 탄생시켰구나."));
-            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("네 친구 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
             yield return StartCoroutine(NormalChat("   "));
             Corgi_1.GetComponent<dragonHappy>().happyStart();
+            Abtn.SetActive(false);
         }
         else if (DragonTags.Contains("Blue") && DragonTags.Contains("Green"))
         {
+            Abtn.SetActive(true);
             yield return new WaitForSeconds(7.0f * Time.deltaTime);
             yield return StartCoroutine(NormalChat(B_name + "와 " + G_name + "의 드래곤을 탄생시켰구나."));
-            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("네 친구 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
             yield return StartCoroutine(NormalChat("   "));
             Dragon_G.GetComponent<dragonHappy>().happyStart();
+            Abtn.SetActive(false);
         }
         else if (DragonTags.Contains("Blue") && DragonTags.Contains("Yellow"))
         {
+            Abtn.SetActive(true);
             yield return new WaitForSeconds(7.0f * Time.deltaTime);
             yield return StartCoroutine(NormalChat(B_name + "와 " + Y_name + "의 드래곤을 탄생시켰구나."));
-            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("네 친구 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
             yield return StartCoroutine(NormalChat("   "));
             Corgi_2.GetComponent<dragonHappy>().happyStart();
+            Abtn.SetActive(false);
         }
         else if (DragonTags.Contains("Yellow") && DragonTags.Contains("Green"))
         {
+            Abtn.SetActive(true);
             yield return new WaitForSeconds(7.0f * Time.deltaTime);
             yield return StartCoroutine(NormalChat(Y_name + "와 " + G_name + "의 드래곤을 탄생시켰구나."));
-            yield return StartCoroutine(NormalChat("이제 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
+            yield return StartCoroutine(NormalChat("네 친구 드래곤과 함께 마법학교를 탐방하러 가볼까?"));
             yield return StartCoroutine(NormalChat("   "));
             Dragon_Y.GetComponent<dragonHappy>().happyStart();
+            Abtn.SetActive(false);
         }
 
-        Invoke("SceneChange", 4.5f);
         StartCoroutine(FadeScreen.GetComponent<FadedScreen>().FadeOut());
+        Invoke("SceneChange", 4.5f);
+        
     }
 
     IEnumerator NormalChat(string narration)
@@ -123,9 +137,10 @@ public class chatController : MonoBehaviour
     {
         yield return StartCoroutine(NormalChat("여기 4개의 마법약이 보이지?"));
         yield return StartCoroutine(NormalChat("원하는 마법약 2개를 선택해 마법의 항아리에 하나씩 넣어봐."));
-        yield return StartCoroutine(NormalChat("너만의 드래곤이 나타날거야!"));
+        yield return StartCoroutine(NormalChat("특별한 친구를 만나게 될거야."));
         yield return StartCoroutine(NormalChat("(Grip을 이용해 마법약을 잡고 항아리에 넣어보세요. 손을 놓으면 다시 선택할 수 있습니다.)"));
         yield return StartCoroutine(NormalChat("   "));
+        Abtn.SetActive(false);
     }
 
     void SceneChange()
