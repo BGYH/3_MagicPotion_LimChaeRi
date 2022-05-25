@@ -137,8 +137,8 @@ public class chatController : MonoBehaviour
     {
         yield return StartCoroutine(NormalChat("여기 4개의 마법약이 보이지?"));
         yield return StartCoroutine(NormalChat("원하는 마법약 2개를 선택해 마법의 항아리에 하나씩 넣어봐."));
-        yield return StartCoroutine(NormalChat("특별한 친구를 만나게 될거야."));
-        yield return StartCoroutine(NormalChat("(Grip을 이용해 마법약을 잡고 항아리에 넣어보세요. 손을 놓으면 다시 선택할 수 있습니다.)"));
+        yield return StartCoroutine(NormalChat("그립을 이용해 마법약을 잡을 수 있어. 손을 놓으면 다시 선택할 수 있지."));
+        yield return StartCoroutine(NormalChat("특별한 친구를 만나게 될거야!"));
         yield return StartCoroutine(NormalChat("   "));
         Abtn.SetActive(false);
     }
