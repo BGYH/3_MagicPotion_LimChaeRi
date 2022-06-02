@@ -1,2 +1,2 @@
 # Magic Potion Project
-Lim Chae Ri's work
+Lim Chaeri's work
